@@ -6,7 +6,7 @@ import(
 )
 
 type ArticleRepository interface{
-
+	CreateArticle(Article models.Article)(models.Article, error)
 }
 
 func NewArticleRepository() ArticleRepository{
