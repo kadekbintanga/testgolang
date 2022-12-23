@@ -6,4 +6,5 @@ import(
 
 func main(){
 	fmt.Print("Init Project")
+	fmt.Print("Init Development Branch")
 }
