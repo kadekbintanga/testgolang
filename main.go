@@ -4,6 +4,7 @@ import(
 	"fmt"
 	"testgolang/config"
 	"gorm.io/gorm"
+	"testgolang/app/routers"
 )
 
 var(
@@ -15,4 +16,5 @@ func main(){
 	config.LoadEnv()
 	config.MigrateDatabase(db)
 	defer config.DisconnectDB(db)
+	routers.InitRouter()
 }
