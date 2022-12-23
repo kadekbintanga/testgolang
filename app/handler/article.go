@@ -49,8 +49,9 @@ func(h *ArticleHandler) CreateArticle(c *gin.Context){
 	res, err := repo.CreateArticle(Article)
 	if err != nil {
 		fmt.Print(err)
-		errorMessage := gin.H{"Error message": "Something went wrong"}
-		response := helpers.APIResponse("Error", http.StatusInternalServerError, errorMessage)
+		errors := helpers.FormatValidationErrorSql(err)
+		errorMessage := gin.H{"Error message": errors}
+		response := helpers.APIResponse("Bad request", http.StatusBadRequest, errorMessage)
 		c.AbortWithStatusJSON(http.StatusBadRequest, response)
 		return
 	}
@@ -67,4 +68,22 @@ func(h *ArticleHandler) CreateArticle(c *gin.Context){
 
 
 
+}
+
+func (h *ArticleHandler) GetArticle(c *gin.Context){
+	var author string = c.DefaultQuery("author", "")
+	var search string = c.DefaultQuery("search", "")
+
+	repo := h.repo
+
+	res, err := repo.GetArticle(author, search)
+	if err != nil {
+		fmt.Print(err)
+		errorMessage := gin.H{"Error message": "Something went wrong"}
+		response := helpers.APIResponse("Error", http.StatusInternalServerError, errorMessage)
+		c.AbortWithStatusJSON(http.StatusBadRequest, response)
+		return
+	}
+	response := helpers.APIResponse("Success", http.StatusOK, res)
+	c.JSON(http.StatusOK, response)
 }

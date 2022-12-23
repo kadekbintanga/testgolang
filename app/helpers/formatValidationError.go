@@ -17,3 +17,16 @@ func FormatValidationErrorInput(err error) string{
 		return "Something went wrong"
 	}
 }
+
+func FormatValidationErrorSql(err error) string{
+	fmt.Println("SQL Validation Error")
+	if strings.Contains(err.Error(), "Duplicate"){
+		if strings.Contains(err.Error(), "articles.title"){
+			return "Title has been used"
+		}else{
+			return "Something went wrong"
+		}
+	}else{
+		return "Something went wrong"
+	}
+}

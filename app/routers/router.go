@@ -19,6 +19,7 @@ func InitRouter(){
 
 	api.GET("/article/health", ArticleHandler.HealthArticle)
 	api.POST("/article", ArticleHandler.CreateArticle)
+	api.GET("/article", ArticleHandler.GetArticle)
 
 
 	r.Run()
