@@ -13,6 +13,16 @@ func FormatValidationErrorInput(err error) string{
 		return "Title is required"
 	}else if strings.Contains(err.Error(), "Body"){
 		return "Body is required"
+	}else if strings.Contains(err.Error(), "unmarshal"){
+		if  strings.Contains(err.Error(), "InputArticle.author"){
+			return "author must has string type"
+		}else if strings.Contains(err.Error(), "InputArticle.title"){
+			return "title must has string type"
+		}else if strings.Contains(err.Error(), "InputArticle.body"){
+			return "body must has string type"
+		}else{
+			return "Something went wrong"
+		}
 	}else{
 		return "Something went wrong"
 	}

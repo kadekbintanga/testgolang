@@ -1,0 +1,19 @@
+For running the program (local) :
+1. Create database using mysql in your local computer
+2. Plese create .env file for settup you enviroment
+3. Copy syntax on .env.example to your .env file
+4. Edit syntax in file .env and adjust the value for each variable according to the database you created
+5. Run the program with command : go run main.go
+6. You can hit this project's API service:
+    - Create article :
+        + url : 127.0.0.1:8080/api/v1/article
+        + method : POST
+        + bodyJSON : {
+                        "author" : "Author Name",
+                        "title" : "Title of the Article",
+                        "body" : "Bosy of the Article"
+                    }
+    
+     - Get article :
+        + url : 127.0.0.1:8080/api/v1/article?author=Author Name&search=Search Value
+        + method : GET
